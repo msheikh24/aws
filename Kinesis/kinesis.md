@@ -1,3 +1,4 @@
+
 # Collection
 
 **Kinesis**
@@ -7,13 +8,14 @@ The following resources I have used to prepare for Big data certification.
 The labs are from Frank and Stephane's course. There were few configuration issues I faced while creating those labs.
 
  1. Using EC2 instance generate server logs to Amazon Kinesis Firehose
-1.1 Create a free-tier EC2 instance
-1.2 Create firehose stream
+ 1.1 Create a free-tier EC2 instance
+ 1.2 Create firehose stream
   
 The logs showed following error: 
 *com.amazon.kinesis.streaming.agent.tailing.AsyncPublisher [ERROR] AsyncPublisher[fh:PurchaseLogs:/var/log/cadabra/**.log]:RecordBuffer(id=37,records=500,bytes=41933) Retriable send error (com.amazonaws.services.kinesisfirehose.model.ResourceNotFoundException: Firehose PurchaseLogs not found under account 1234. (Service: AmazonKinesisFirehose; Status Code: 400; Error Code: ResourceNotFoundException; Request ID: f605a5aa-b6e2-4c51-a0ce-44322d2b8531)). Will retry.*
 
 **Resolution**
+
 To resolve this issue, I added  firehose [endpoint](https://docs.amazonaws.cn/en_us/general/latest/gr/fh.html) to json file and it started sending data. In my case Endpoint was *firehose.ca-central-1.amazonaws.com*
 
 
@@ -32,7 +34,7 @@ Add two roles to IAM user so lamda can read, AmazonKinesisReadOnlyAccess, and wr
 
 4.3 Issues from Kinesis data stream to Lamda 
 
-	**Resolution**
+**Resolution**
 
 4.3.1 I received errors like **"Function Failed"** and was having issues getting lamda to work. I attached *AWSLambdaKinesisExecutionRole* to IAM policy. 
 	
