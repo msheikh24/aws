@@ -13,5 +13,6 @@ The 3 hour course focuses on RedShift with hands on labs and can be watched on [
 ### LABS
 1. [Kinesis](https://github.com/msheikh24/aws/blob/master/Kinesis/kinesis.md)
 2. [RedShift](https://github.com/msheikh24/aws/blob/master/RedShift/RedShift.md)
+3. [Glue & Athena]()
 
 ### Billing

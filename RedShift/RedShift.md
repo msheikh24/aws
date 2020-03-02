@@ -1,4 +1,5 @@
 
+
 # RedShift
 The following resources I have used to prepare for Big data certification.
 
@@ -95,7 +96,22 @@ The labs are from oreilly's AWS RedShift course by Rich Morrow. There were few c
 		num_values column shows number of values in each slot
 	- Get table metadata like name, column, type, encoding, distribution and sort key, nullable
 		- select * from pg_catalog.svv_diskusage where name='customer' and col = 0 order by slice, col
- 
+
+
+##### RedShift Spectrum Labs
+The following labs are from oreilly's Frank and Stephane's course. The lab is to create Redshift cluster and create schema from glue catalog table.
+
+- Create a security group within VPC
+		- Add inboud rules for port 22 and 5439 and restrict it to your IP
+- Create Role with AmazonS3ReadOnlyAccess and  AWSGlueConsoleFullAccess
+- Create RedShift cluster **Instructions provided in previous lab**
+- Create RedShift schema based on data catalog database
+
+	*create external schema schema_name from data catalog database 'database_in_glue_catalog' iam_role 'your_IAM_role_arn' region 'ca-central-1';*
+
+- Query redshift table to view data that was brought from S3
+		*select description, count(*) from schema_name.table_name where country = 'France' and year = '2020' and  month = '02' group by description;*
+	
 #### re:invent Videos
 
 #### Articles
