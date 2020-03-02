@@ -17,7 +17,7 @@ The labs are from oreilly's Frank and Stephane's course. There were few configur
 
 Please change the database name and table name as per exercise.
 
-*SELECT count(*) FROM "database_name"."table_name";*
+*SELECT count(\*) FROM "database_name"."table_name";*
 
 *select description, count(*) from "database_name"."table_name" where country = 'France' and year = '2020' and month = '02' group by description;*
 
