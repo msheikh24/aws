@@ -19,7 +19,7 @@ Please change the database name and table name as per exercise.
 
 *SELECT count(\*) FROM "database_name"."table_name";*
 
-*select description, count(*) from "database_name"."table_name" where country = 'France' and year = '2020' and month = '02' group by description;*
+*select description, count(\*) from "database_name"."table_name" where country = 'France' and year = '2020' and month = '02' group by description;*
 
 *select year, month, day from  "database_name"."table_name"*
 
