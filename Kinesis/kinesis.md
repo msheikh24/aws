@@ -1,10 +1,19 @@
 
-# Collection
+# Kinesis
 
-**Kinesis**
 The following resources I have used to prepare for Big data certification.
 
+#### Notes
+
+- Kinesis Streams, Kinesis Firehose, Kinesis Analytics
+- Sources: clickstream, application logs, IoT
+- CloudWatch logs are built on top of Kinesis Data Streams
+- Kinesis agent
+
 #### Labs
+
+
+
 The labs are from Frank and Stephane's course. There were few configuration issues I faced while creating those labs.
 
 1. Using EC2 instance generate server logs to Amazon Kinesis Firehose
@@ -50,6 +59,8 @@ AWS Lamda
    finally all records in stream came through
 
 #### re:invent Videos
+
+1. re:Invent 2019:  Building a streaming data platform with [Amazon Kinesis](https://youtu.be/TAkcRD6OxPw)
 
 #### Articles
 
