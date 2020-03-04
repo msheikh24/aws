@@ -11,8 +11,9 @@ It is an 11 hour course which covers all services related to big data that aws h
 The 3 hour course focuses on RedShift with hands on labs and can be watched on [oreilly](http://shop.oreilly.com/)
 
 ### LABS
-1. [Kinesis](https://github.com/msheikh24/aws/blob/master/Kinesis/kinesis.md)
-2. [RedShift](https://github.com/msheikh24/aws/blob/master/RedShift/RedShift.md)
-3. [Glue & Athena](https://github.com/msheikh24/aws/blob/master/Glue-Athena/aws_glue.md)
+1. [Kinesis](https://github.com/msheikh24/aws/tree/master/Kinesis)
+2. [RedShift](https://github.com/msheikh24/aws/tree/master/RedShift)
+3. [Glue & Athena](https://github.com/msheikh24/aws/tree/master/Glue-Athena)
+4. [Elasticsearch](https://github.com/msheikh24/aws/tree/master/Elasticsearch)
 
 ### Billing
