@@ -1,13 +1,18 @@
-
-
 # RedShift
+
 The following resources I have used to prepare for Big data certification.
 
 #### Notes
 
-- Columnar storage
-- Sort column data
-- Compression is really helpful
+- Columnar storage, ACID compliant DW
+- Compression done automatically for each column
+- null columns will return as raw for compression
+- Zone Maps: Metadata of blocks; min and max of block data
+- Sort column data to increase effectiveness of zone maps; use temporal column and do not use it on high cardinality column
+- Sort key is not useful on small set of data
+- Writing (1-10 rows) has similar cost to a larger write (~100000)
+- Deletes use MVCC
+- update is just a delete and re-insert at the end of table 
  
 ##### Architecture
 
@@ -26,12 +31,13 @@ The following resources I have used to prepare for Big data certification.
 - RDS sync
 - With INSERT/UPDATE/DELETE (expensive) fragmentation can be done using VACUMM (sort, delete ..).
 
+
 ##### Data Distribution
 
- - Affects speed of joins and disk usage
- - **Even:** default: round-robin distribution: Accessing all the data in a table pretty much all the time and not suitable for join.
+- Affects speed of joins and disk usage
+- **Even:** default: round-robin distribution: Accessing all the data in a table pretty much all the time and not suitable for join.
 	- Subset of data exists on each node
-- **Key:** Suitable for performing joins. Data might reside in a single compute node or same slide for quick quering.
+- **Key:** Suitable for performing **joins / group by performance** . Data might reside in a single compute node or same slide for quick quering.
 	- Subset of data exists on each node
 - **All:** Creates a copy of data on every single compute node. Slower to perform load, update, and insert. Preferred to use with small dimensions table
 
@@ -39,6 +45,7 @@ The following resources I have used to prepare for Big data certification.
 	- Key for PK and FK
 	- EVEN for denormalized and non-joined tables
 	- All for lookup tables like catalog
+
 
 ##### Syntax
 
@@ -49,6 +56,14 @@ The following resources I have used to prepare for Big data certification.
 - readratio parameter can only be used when copying DynamoDB. The value should be less than the average unused provisioned throughput
 - Multirow-inserts row can be performed but copy is recommended.
 - LOCKS are allowed.
+
+
+##### Best Practices
+
+- Avoid distribution key on temporal columns
+- Always add compression to tables
+- Add sort keys to which filter is being performed
+- Turn the backup option off on staging data
 
 
 ## Labs
