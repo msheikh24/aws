@@ -21,15 +21,22 @@ The following resources I have used to prepare for Big data certification.
 - computer nodes maintain subset of data
 - data is loaded in parallel and mirrored 
 - storage of each node is divided into slices
+- Each compute node has either 2, 16, or 32 slices of data
+- Elastic and classic node resizing
 
 
 ##### Data Loading
 
 - \# of vCPUs = \# of slices
 - COPY command to populate data to table in RedShift. Command does automatic compression
+- if copy fails, all changes are rolled back 
+- COPY implicitly converts data to target data type
 - Alternate method is data pipeline
 - RDS sync
 - With INSERT/UPDATE/DELETE (expensive) fragmentation can be done using VACUMM (sort, delete ..).
+- RedShift cluster and S3 bucket must be in same region
+- Read only access to S3 insert table
+- struct, map, or array are not supported by redshift
 
 
 ##### Data Distribution
@@ -67,6 +74,8 @@ The following resources I have used to prepare for Big data certification.
 
 
 ## Labs
+
+### Lab # 1 (Reference i)
 The labs are from oreilly's AWS RedShift course by Rich Morrow. There were few configuration issues I faced while creating those labs.
 
  - Creating RedShift Cluster
@@ -113,24 +122,34 @@ The labs are from oreilly's AWS RedShift course by Rich Morrow. There were few c
 		- select * from pg_catalog.svv_diskusage where name='customer' and col = 0 order by slice, col
 
 
-##### RedShift Spectrum Labs
+##### RedShift Spectrum Lab # 2 
 The following labs are from oreilly's Frank and Stephane's course. The lab is to create Redshift cluster and create schema from glue catalog table.
 
-- Create a security group within VPC
+	- Create a security group within VPC
 		- Add inboud rules for port 22 and 5439 and restrict it to your IP
-- Create Role with AmazonS3ReadOnlyAccess and  AWSGlueConsoleFullAccess
-- Create RedShift cluster **Instructions provided in previous lab**
-- Create RedShift schema based on data catalog database
+	- Create Role with AmazonS3ReadOnlyAccess and  AWSGlueConsoleFullAccess
+	- Create RedShift cluster **Instructions provided in previous lab**
+	- Create RedShift schema based on data catalog database
 
 	*create external schema schema_name from data catalog database 'database_in_glue_catalog' iam_role 'your_IAM_role_arn' region 'ca-central-1';*
 
-- Query redshift table to view data that was brought from S3
+	- Query redshift table to view data that was brought from S3
 		*select description, count(*) from schema_name.table_name where country = 'France' and year = '2020' and  month = '02' group by description;*
-	
+
+##### Lab # 3 (Reference ii)
+
+	- Create cluster using quick launch
+	- Create cluster using advanced settings
+
 #### re:invent Videos
+
+[Best Practices with Amazon RedShift](https://youtu.be/Hur-p3kGDTA)
+
 
 #### Articles
 
 
 #### Reference
-Learning Path: AWS RedShift by Rich Morrow (oreilly)
+i. Learning Path: AWS RedShift by Rich Morrow (oreilly)
+
+ii. AWS Certified Big Data - Specialty Complete Video Course by Robert Jordan, Chris Brousseau, Noah Gift (oreilly)
