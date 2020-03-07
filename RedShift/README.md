@@ -172,4 +172,5 @@ The following labs are from oreilly's Frank and Stephane's course. The lab is to
 i. Learning Path: AWS RedShift by Rich Morrow (oreilly)
 
 ii. AWS Certified Big Data - Specialty Complete Video Course by Robert Jordan, Chris Brousseau, Noah Gift (oreilly)
+
 iii. [Getting Started With Amazon Redshift]([https://docs.aws.amazon.com/redshift/latest/gsg/getting-started.html)
