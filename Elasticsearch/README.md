@@ -10,21 +10,49 @@ The following resources I have used to prepare for Big data certification.
 - Elasticsearch does not serve as a long term storage
 - Elasticsearch can rotate index by hourly, weekly, daily
 - it takes json data for search
+- database is called domain in elasticsearch
 
 #### Labs
 
-The labs are from tech talk video:
+##### Lab # 1: Near real-time log analysis
 
-1. Create amazon elasticsearch cluster
+Server logs will be generated from EC2 instance to Amazon Kinesis firehose and finally to Amazon Elasticsearch.
 
-2. Create firehose delivery stream
+- Create an EC2 instance
+	- install kinesis agent
+	*sudo yum install -y aws-kinesis-agent*
+	- Download log servers from site
+	*wget http://media.sundog-soft.com/AWSBigData/httpd.zip*
+	- move httpd directory to /var/log/httpd
+	*mv httpd /var/log/httpd*
+- Create Elasticsearch domain
+- Create Firehose delivery stream
+- Tie delivery streams to elasticsearch instance
+	- update the /etc/aws-kinesis/agent.json with:
+		- "firehose.endpoint"
+		- "awsAccessKeyId"
+		- "awsSecretAccessKey"
+		- "filePattern": location of logs
+		- "deliveryStream": name of stream
+		- "initialPosition": start of file
+- start the kinesis agent
+	*service aws-kinesis-agent restart*
+- View the logs to check if streams have started
+- In elasticsearch, allow access to your IP
+- Indices section will show the count of logs that have been received by firehose
+- The logs can be viewed and visulize in kibana link under overview section
 
-3. Send data for Firehose
+##### Lab # 2: Near real-time log analysis
+This lab is pretty much same as lab 1 but could be useful as it was done in tech talk video:
+
+- Create amazon elasticsearch cluster
+- Create firehose delivery stream
+- Send data for Firehose
 	- Data streams can be created using putRecord (single document) or putRecordsBatch (Multiple data records in a single api call)
 	- use amazon kinesis data generator to send data
 	- Visulize data in Kibana
 
-4. Monitor Log Ingestion Pipeline
+- Monitor Log Ingestion Pipeline
 
 #### re:invent Videos
 
