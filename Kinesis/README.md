@@ -16,6 +16,8 @@ The following resources I have used to prepare for Big data certification.
 
 The labs are from Frank and Stephane's course. There were few configuration issues I faced while creating those labs.
 
+##### Lab # 1: Kinesis Firehose
+
 1. Using EC2 instance generate server logs to Amazon Kinesis Firehose
  - Create a free-tier EC2 instance
  - Create firehose stream
@@ -27,6 +29,9 @@ The logs showed following error:
 **Resolution**
 
 To resolve this issue, I added  firehose [endpoint](https://docs.amazonaws.cn/en_us/general/latest/gr/fh.html) to json file and it started sending data. In my case Endpoint was *firehose.ca-central-1.amazonaws.com*
+
+
+##### Lab # 2: Kinesis DataStreams
 
 Using EC2 instance generate server logs to Amazon DataStreams
  - Create a free-tier EC2 instance
@@ -52,11 +57,37 @@ AWS Lamda
    IAM policy.  	 
    
  - In the given code of I wasn't able to access data
-   *[base64.b64decode(record['kinesis']['data']) for record in event['Records']]* so I had to print out *record['kinesis']* to view
-   
- - the record in cloudwatch 	 While I was making all those lamda changes
+   *[base64.b64decode(record['kinesis']['data']) for record in event['Records']]* so I had to print out *record['kinesis']* to view the record in cloudwatch. While I was making all those lamda changes
    and somehow identation was off for 1 of the line which I fixed and
-   finally all records in stream came through
+   finally all records in stream came through.
+
+##### Lab # 3: Kinesis Analytics
+
+Data pipeline: EC2 instance -> data streams -> data analytics -> data streams -> AWS lamda -> SNS
+
+- Create Firehose delivery stream
+	- PurchaseLogs
+- Create EC2 instance
+	- install kinesis agent
+	*sudo yum install -y aws-kinesis-agent*
+	- Get the logs from the website
+	*wget http://media.sundog-soft.com/AWSBigData/LogGenerator.zip*
+	- change file permissions for LogGenerator.py 
+	*chmod a+x LogGenerator.py*
+	- Create a file
+	*sudo mkdir /var/log/cadabra*
+	- Configure the json file by providing awsAccessKeyId and awsSecretAccessKey
+	*nano agent.json*
+	- Create two data streams
+		- server logs are sent to CadabraOrders 
+		- OrderRateAlarm stream will receive output from data analytics application 
+	- Create analytic application, TransactionRateMonitor
+		- Source: CadabraOrders
+		- Destination: OrderRateAlarm
+	- Create lambda function
+		- Trigger from OrderRateAlarm (Kinesis)
+		- Create client of SNS
+		- Publish to SNS
 
 #### re:invent Videos
 
