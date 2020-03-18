@@ -15,5 +15,6 @@ The 3 hour course focuses on RedShift with hands on labs and can be watched on [
 2. [RedShift](https://github.com/msheikh24/aws/tree/master/RedShift)
 3. [Glue & Athena](https://github.com/msheikh24/aws/tree/master/Glue-Athena)
 4. [Elasticsearch](https://github.com/msheikh24/aws/tree/master/Elasticsearch)
+5. [Security](https://github.com/msheikh24/aws/tree/master/Security)
 
 ### Billing
